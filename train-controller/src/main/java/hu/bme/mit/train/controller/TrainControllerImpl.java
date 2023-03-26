@@ -11,8 +11,6 @@ public class TrainControllerImpl implements TrainController {
 	@Override
 	public void followSpeed() {
 
-		! this will break the build
-		
 		referenceSpeed += step;
 
 		enforceSpeedLimit();
