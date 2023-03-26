@@ -67,5 +67,20 @@ public class TrainSystemTest {
 		controller.followSpeed();
 		Assert.assertEquals(-10, controller.getReferenceSpeed());
 	}
+
+	@Test
+	public void TestTechnoGraph() {
+		sensor.overrideSpeedLimit(10);
+		user.overrideJoystickPosition(5);
+
+		sensor.logInfo();
+
+		controller.followSpeed();
+		controller.followSpeed();
+
+		sensor.logInfo();
+
+		Assert.assertEquals(2, sensor.getLogTable().size());
+	}
 	
 }
