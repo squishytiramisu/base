@@ -9,6 +9,9 @@ import hu.bme.mit.train.interfaces.TrainSensor;
 import hu.bme.mit.train.interfaces.TrainUser;
 import hu.bme.mit.train.system.TrainSystem;
 
+import static java.lang.Thread.sleep;
+
+
 public class TrainSystemTest {
 
 	TrainController controller;
@@ -81,6 +84,23 @@ public class TrainSystemTest {
 		sensor.logInfo();
 
 		Assert.assertEquals(2, sensor.getLogTable().size());
+	}
+
+	@Test
+	public void TestAutomaticReferenceSpeedChange() throws InterruptedException{
+		sensor.overrideSpeedLimit(1000);
+
+		Assert.assertEquals(0, controller.getReferenceSpeed());
+
+		user.overrideJoystickPosition(50);
+		sleep(1100);
+
+		int refSpeed = controller.getReferenceSpeed();
+		Assert.assertNotEquals(0, refSpeed);
+
+		sleep(1100);
+
+		Assert.assertTrue(refSpeed < controller.getReferenceSpeed());
 	}
 	
 }
