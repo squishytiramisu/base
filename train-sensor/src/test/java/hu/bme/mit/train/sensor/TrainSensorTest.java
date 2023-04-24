@@ -60,4 +60,6 @@ public class TrainSensorTest {
 
         verify(mockUser, times(1)).setAlarmState(true);
     }
+
+    // TODO: Add test to check
 }
